@@ -1,0 +1,25 @@
+body {
+    font-family: Arial;
+
+}
+
+/*align the text in the center*/
+.center {
+    text-align: center;
+  }
+
+  /* creating two uneven columns */
+.container {
+    display: flex;
+  }
+  
+  .left-column {
+    width: 60%;
+    padding: 20px;
+  }
+  
+  .right-column {
+    width: 40%;
+    padding: 20px;
+  }
+  
