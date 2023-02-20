@@ -23,3 +23,36 @@ body {
     padding: 20px;
   }
   
+
+  .tooltip {
+    position: absolute;
+    background-color: grey;
+    border:  solid;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+
+  .point {
+    fill: seagreen;
+  }
+
+  circle {
+    fill: rgb(69, 22, 123);
+  }
+  
+  .axis_style {
+      stroke-width: 10px;
+  }
+  
+  /* if you hover over the point the point should highlight */
+  .point:hover {
+    fill: rgb(200, 167, 200);
+  }
+  
+/* if a point is clicked, give the point a border */
+.selected {
+  stroke: red;
+  stroke-width: 3;
+}
