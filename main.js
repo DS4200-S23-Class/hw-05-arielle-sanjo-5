@@ -34,6 +34,7 @@ function build_interactive_plot() {
     const Y_SCALE1 = d3.scaleLinear() 
     .domain([0, 10]) // add some padding  
     .range([VIS_HEIGHT, 0]); 
+    
 
     // add our dots with styling 
     FRAME1.selectAll("circle") 
@@ -196,5 +197,5 @@ d3.csv("data/bar-data.csv").then((data) => {
                           .domain(MAX_Y_BAR)
                           .range(0, VIS_HEIGHT)
 
-}
+});
 
