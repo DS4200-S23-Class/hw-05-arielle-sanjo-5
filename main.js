@@ -170,7 +170,7 @@ const addCircleButton = document.querySelector("#add-circle");
 build_interactive_plot();
 
 //bar plot
-const FRAME1 = d3.select("#vis2") 
+const FRAME2 = d3.select("#vis2") 
                   .append("svg") 
                     .attr("height", FRAME_HEIGHT)   
                     .attr("width", FRAME_WIDTH)
