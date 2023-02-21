@@ -198,3 +198,6 @@ d3.csv("data/bar-data.csv").then((data) => {
 
 }
 
+      //add our bars with styling
+      FRAME2.select
+
