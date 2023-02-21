@@ -156,7 +156,6 @@ const addCircleButton = document.querySelector("#add-circle");
 }
 
 
-
   // Add event listeners
   FRAME1.selectAll(".point")
   .on("selected", handlePointClick)
@@ -167,8 +166,35 @@ const addCircleButton = document.querySelector("#add-circle");
   });
 }
 
-
-
   // call function
 build_interactive_plot();
+
+//bar plot
+const FRAME1 = d3.select("#vis2") 
+                  .append("svg") 
+                    .attr("height", FRAME_HEIGHT)   
+                    .attr("width", FRAME_WIDTH)
+                    .attr("class", "frame"); 
+
+//read in data for bar plot
+d3.csv("data/bar-data.csv").then((data) => {
+
+    //build bar plot inside of .then
+    //find max X by returning "category"
+      const MAX_X_BAR = d3.max(data, (d) => {return (d.category); });
+    //find max Y by returning "amount" as an int
+      const MAX_Y_BAR = d3.max(data, (d) => {return parseInt(d.amount);});
+
+    //domain and range
+      //use scaleBand() because category is nominal  
+      const X_SCALE_BAR = d3.scaleBand()
+                          //domain are "category" variables
+                          .domain(data.map(function(d) {return d.category;}))
+                          .range([0, VIS_WIDTH]).padding(0.5);
+      //use scaleLinear() because amount is quantitative and bar length should be proportional to value
+      const Y_SCALE_BAR = d3.scaleLinear()
+                          .domain(MAX_Y_BAR)
+                          .range(0, VIS_HEIGHT)
+
+}
 
