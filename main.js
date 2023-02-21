@@ -156,7 +156,6 @@ const addCircleButton = document.querySelector("#add-circle");
 }
 
 
-
   // Add event listeners
   FRAME1.selectAll(".point")
   .on("selected", handlePointClick)
@@ -166,7 +165,6 @@ const addCircleButton = document.querySelector("#add-circle");
    
   });
 }
-
 
 
   // call function
