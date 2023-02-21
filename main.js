@@ -198,3 +198,11 @@ d3.csv("data/bar-data.csv").then((data) => {
 
 }
 
+      //add our bars with styling
+      FRAME2.selectAll("bar")
+        .data(data)// this is passed from .then()
+        .enter()
+        .append("bars")
+          .attr("class", "point") //add class
+          .attr("cx")
+
