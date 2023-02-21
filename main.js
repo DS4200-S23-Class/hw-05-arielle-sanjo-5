@@ -169,40 +169,100 @@ const addCircleButton = document.querySelector("#add-circle");
   // call function
 build_interactive_plot();
 
-//bar plot
-const FRAME2 = d3.select("#vis2") 
-                  .append("svg") 
-                    .attr("height", FRAME_HEIGHT)   
+
+
+
+
+
+
+
+
+
+const FRAME2 = d3.select("#vis2")
+                  .append("svg")
+                    .attr("height", FRAME_HEIGHT)
                     .attr("width", FRAME_WIDTH)
                     .attr("class", "frame"); 
 
-//read in data for bar plot
-d3.csv("data/bar-data.csv").then((data) => {
+// This time, let's define a function that builds our plot
+function build_interactive_plot() {
 
-    //build bar plot inside of .then
-    //find max X by returning "category"
-      const MAX_X_BAR = d3.max(data, (d) => {return (d.category); });
-    //find max Y by returning "amount" as an int
-      const MAX_Y_BAR = d3.max(data, (d) => {return parseInt(d.amount);});
+  d3.csv("data/bar-data.csv.csv").then((data) => {
 
-    //domain and range
-      //use scaleBand() because category is nominal  
-      const X_SCALE_BAR = d3.scaleBand()
-                          //domain are "category" variables
-                          .domain(data.map(function(d) {return d.category;}))
-                          .range([0, VIS_WIDTH]).padding(0.5);
-      //use scaleLinear() because amount is quantitative and bar length should be proportional to value
-      const Y_SCALE_BAR = d3.scaleLinear()
-                          .domain(MAX_Y_BAR)
-                          .range(0, VIS_HEIGHT)
+    // Build plot inside of .then 
+    // find max X
+    const BAR_MAX_X = d3.max(data, (d) => { return parseInt(d.category); });
 
+    // find max Y
+    const BAR_MAX_Y = d3.max(data, (d) => { return parseInt(d.amount); });
+    
+    // Define scale functions that maps our data values (domain) to pixel values (range)
+    const BAR_X_SCALE = d3.scaleLinear() 
+                      .domain([0,100]) // add some padding 
+                      .range([0, VIS_WIDTH]); 
+
+    const BAR_Y_SCALE = d3.scaleLinear() 
+                      .domain([0, (BAR_MAX_Y)]) // add some padding  
+                      .range([0, VIS_HEIGHT]); 
+
+
+    // Use X_SCALE to plot our bars
+    FRAME2.selectAll("bars")  
+        .data(data) // passed from .then  
+        .enter()       
+        .append("rectangle")  
+          .attr("x", (d) => { return (BAR_X_SCALE(d.category) + MARGINS.left); }) 
+          .attr("y", (d) => {return (BAR_Y_SCALE(d.amount) + MARGINS.top) 
+          .attr("class", "bars");
+
+    // Tooltip
+
+     // To add a tooltip, we will need a blank div that we 
+    //  fill in with the appropriate text. Be use to note the
+    //  styling we set here and in the .css
+    const TOOLTIP = d3.select("#vis3")
+                        .append("div")
+                          .attr("class", "tooltip")
+                          .style("opacity", 0); 
+
+    // Define event handler functions for tooltips
+    function handleMouseover(event, d) {
+      // on mouseover, make opaque 
+      TOOLTIP.style("opacity", 1); 
+      
+    }
+
+    function handleMousemove(event, d) {
+      // position the tooltip and fill in information 
+      TOOLTIP.html("Name: " + d.name + "<br>Value: " + d.x)
+              .style("left", (event.pageX + 10) + "px") //add offset
+                                                          // from mouse
+              .style("top", (event.pageY - 50) + "px"); 
+    }
+
+    function handleMouseleave(event, d) {
+      // on mouseleave, make transparant again 
+      TOOLTIP.style("opacity", 0); 
+    } 
+
+    // Add event listeners
+    FRAME3.selectAll(".point")
+          .on("mouseover", handleMouseover) //add event listeners
+          .on("mousemove", handleMousemove)
+          .on("mouseleave", handleMouseleave);    
+
+    // Add an axis to the vis  
+    FRAME3.append("g") 
+          .attr("transform", "translate(" + MARGINS.left + 
+                "," + (VIS_HEIGHT + MARGINS.top) + ")") 
+          .call(d3.axisBottom(X_SCALE3).ticks(4)) 
+            .attr("font-size", '20px'); 
+
+
+  });
 }
 
-      //add our bars with styling
-      FRAME2.selectAll("bar")
-        .data(data)// this is passed from .then()
-        .enter()
-        .append("bars")
-          .attr("class", "point") //add class
-          .attr("cx")
+// Call function 
+build_interactive_plot();
+
 
