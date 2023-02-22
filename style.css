@@ -1,3 +1,4 @@
+/* font on website is Arial*/ 
 body {
     font-family: Arial;
 
@@ -7,6 +8,11 @@ body {
 .center {
     text-align: center;
   }
+
+/*make the font size of the acknowledgments smaller*/
+#smaller{
+    font-size: 18px;
+}
 
   /* creating two uneven columns */
 .container {
@@ -23,7 +29,7 @@ body {
     padding: 20px;
   }
   
-
+/* tooltip for mouse events*/ 
   .tooltip {
     position: absolute;
     background-color: grey;
@@ -33,7 +39,7 @@ body {
     padding: 5px;
   }
   
-
+/* original point (unclicked) is seagreen*/  
   .point {
     fill: seagreen;
   }
@@ -42,10 +48,12 @@ body {
     fill: rgb(69, 22, 123);
   }
 
+/* the rectangles in the bar chart should be blue */
   rect {
     fill: blue;
   }
   
+/* style the axis to be 10px wide*/  
   .axis_style {
       stroke-width: 10px;
   }

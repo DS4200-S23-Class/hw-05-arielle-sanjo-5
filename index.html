@@ -3,15 +3,16 @@
 
 <head>
     <meta charset=utf-8/>
+    <!--style-->
     <link rel="stylesheet" href="style.css">
     <script src="js/d3.v6.1.1/d3.min.js"></script>
     <!-- add title -->
     <title>hw-05</title>
 </head>
 
-
 <body>
 
+    <!-- title and divs for both scatterplot and barchart visualizations -->
     <h1 class="center">hw-05: Interactive Graph with D3</h1>
     <div class="container">
         <div class="left-column">
@@ -20,7 +21,7 @@
             <div id="vis2"></div>
 
         </div>
-
+        <!-- values for user to select x and y coordinates -->
         <div class="right-column">
             <form>
                 Select the x coordinate for the point you want to add:
@@ -34,10 +35,10 @@
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>
-                </select>
-                <br><br>
-                Select the y coordinate for the point you want to add:
-                <select id="y">
+              </select>
+              <br><br>
+              Select the y coordinate for the point you want to add:
+              <select id="y">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -47,19 +48,29 @@
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>
-                </select>
-                <br><br>
-                <input type="button" value="Add Circle" onclick="addCircle()">
+              </select>
+              <br><br>
+              <input type="button" value="Add Circle" onclick="addCircle()">
 
-              </form>
+          </form>
+      </div>
+  </div>
+  <!-- acknowledgements -->
+  <h1 class="center" id="smaller"> Acknowledgements</h1>
+  <div id = "smaller">
+    <li><a href="https://www.educative.io/answers/how-to-create-a-scatter-plot-using-d3">scatterplot help</a></li>
+    <li><a href="https://www.d3indepth.com/scales/">scales help</a></li>
+    <li><a href="https://www.geeksforgeeks.org/d3-js-d3-scaleband-function/">scaleband help</a></li>
+    <li><a href="https://observablehq.com/@d3/learn-d3-scales">scales help</a></li>
+    <li><a href="https://stackoverflow.com/questions/43663721/d3-bar-chart-add-margins">barchart margins help</a></li>
+    <li><a href="https://www.tutorialsteacher.com/d3js/create-bar-chart-using-d3js">barchart help</a></li>
+    <li><a href="https://www.knowledgehut.com/blog/web-development/d3-bar-chart">barchart help</a></li>
+    <li><a href="https://stackoverflow.com/questions/42973502/understanding-d3-domain-and-ranges">domain and ranges help</a></li>
+</li>
+</div>
 
-
-
-        </div>
-
-
-    </div>
-    <script src="main.js"></script>
+<!-- in order to add functionality we need to add java -->
+<script src="main.js"></script>
 </body>
 
 </html>
