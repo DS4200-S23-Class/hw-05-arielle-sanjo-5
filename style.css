@@ -41,6 +41,10 @@ body {
   circle {
     fill: rgb(69, 22, 123);
   }
+
+  rect {
+    fill: blue;
+  }
   
   .axis_style {
       stroke-width: 10px;
@@ -57,6 +61,3 @@ body {
   stroke-width: 3;
 }
 
-.bar{
-  fill: pink;
-}
