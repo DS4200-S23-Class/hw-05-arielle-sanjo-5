@@ -154,14 +154,14 @@ function addCircle() {
 
 
 
-                      function handlePointClick(event) {
+         function handlePointClick(event) {
         // Get the point that was clicked
         // getting the coordinates of a circle when you click on it
-                        const rightColumn = document.querySelector(".right-column");
-                        const point = event.target;
+                const rightColumn = document.querySelector(".right-column");
+                const point = event.target;
 
         // toggle selected class for the point that was clicked
-                        point.classList.toggle("selected");
+                point.classList.toggle("selected");
 
         // add/remove border class for the point that was
                         if (point.classList.contains("selected")) {
@@ -175,20 +175,20 @@ function addCircle() {
                         oldCoordinates.forEach(old => old.remove());
 
         // get the selected coordinates
-                        const x = point.__data__.x;
-                        const y = point.__data__.y;
+        const x = Number(document.getElementById("x").value);
+        const y = Number(document.getElementById("y").value);
 
         // create a new paragraph element with the selected coordinates
-                        const newCoordinates = document.createElement('p');
-                        newCoordinates.classList.add('coordinate');
+        const newCoordinates = document.createElement('p');
+        newCoordinates.classList.add('coordinate');
 
-                        newCoordinates.innerHTML = `Selected Coordinate: (${x}, ${y})`;
+        newCoordinates.innerHTML = `Selected Coordinate: (${x}, ${y})`;
 
     // add the new paragraph to the beginning of the right column
                         rightColumn.insertBefore(newCoordinates, rightColumn.firstChild);
                       }
 
-    // get the points in the left column
+     // get the points in the left column
                       const points = document.querySelectorAll(".point");
 
     // adds event listener for clicking each point
@@ -196,34 +196,33 @@ function addCircle() {
 
 
     // add event listener to the form in html code
-                      const form = document.querySelector("form");
+        const form = document.querySelector("form");
 
-                      form.addEventListener("submit", function(e) {
-    e.preventDefault(); // prevent default action
+        form.addEventListener("submit", function(e) {
+            e.preventDefault(); // prevent default action
 
-    // Get the select element inside the form
-    var select = this.querySelectorAll("select");
+            // Get the select element inside the form
+            var select = this.querySelectorAll("select");
 
-    // Loop through the select elements and get the selected value
-    for (var i = 0; i < select.length; i++) {
-      if (select[i].value !== "0") {
-        // remove any previously added coordinates in the right column
-        const oldCoordinates = rightColumn.querySelectorAll('.coordinate');
-        oldCoordinates.forEach(old => old.remove());
+            // Loop through the select elements and get the selected value
+            for (var i = 0; i < select.length; i++) {
+              if (select[i].value !== "0") {
+                // remove any previously added coordinates in the right column
+                const oldCoordinates = rightColumn.querySelectorAll('.coordinate');
+                oldCoordinates.forEach(old => old.remove());
 
-        // create a new paragraph element with the selected coordinate
-        const newCoordinates = document.createElement('p');
-        newCoordinates.classList.add('coordinate');
-        newCoordinates.innerHTML = `Selected Coordinate ${i+1}: ${select[i].value}`;
+                // create a new paragraph element with the selected coordinate
+                const newCoordinates = document.createElement('p');
+                newCoordinates.classList.add('coordinate');
+                newCoordinates.innerHTML = `Selected Coordinate ${i+1}: ${select[i].value}`;
 
-        // add the new paragraph to the beginning of the right column
-        rightColumn.insertBefore(newCoordinates, rightColumn.firstChild);
-      }
-    }
-  });
-                      ;
-
-                      FRAME1.append("circle")
+                // add the new paragraph to the beginning of the right column
+                rightColumn.insertBefore(newCoordinates, rightColumn.firstChild);
+              }
+            }
+          });
+                      
+FRAME1.append("circle")
 .attr("class", "point") // add class
 .attr("cx",X_SCALE1(x)+ MARGINS.left ) // use x for cx
 .attr("cy", Y_SCALE1(y) + MARGINS.bottom) // use y for cy
